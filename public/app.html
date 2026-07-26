@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeadDesk Team App</title>
+    <meta name="description" content="Authenticated lead management application with role-based access.">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">LeadDesk</a>
+      <nav>
+        <a href="/">Capture form</a>
+        <button id="logout-button" class="ghost hidden" type="button">Log out</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section id="login-view" class="panel auth-panel">
+        <h1>Team sign in</h1>
+        <p class="muted">Demo accounts: admin@example.com / admin123 or member@example.com / member123</p>
+        <form id="login-form">
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Password
+            <input name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Sign in</button>
+          <p id="login-message" class="form-message" role="status"></p>
+        </form>
+      </section>
+
+      <section id="dashboard-view" class="hidden">
+        <div class="dashboard-top">
+          <div>
+            <p class="eyebrow">Pipeline</p>
+            <h1>Lead command center</h1>
+          </div>
+          <p id="user-chip" class="chip"></p>
+        </div>
+
+        <form id="filters" class="toolbar">
+          <input name="search" placeholder="Search leads" aria-label="Search leads">
+          <select name="status" aria-label="Filter by status">
+            <option value="">All statuses</option>
+          </select>
+          <button type="submit">Apply</button>
+        </form>
+
+        <div class="crm-grid">
+          <section class="panel">
+            <div class="section-head">
+              <h2>Leads</h2>
+              <p id="lead-count" class="muted"></p>
+            </div>
+            <div id="lead-list" class="lead-list"></div>
+          </section>
+
+          <section class="panel detail-panel">
+            <div id="lead-detail" class="empty-state">
+              Select a lead to inspect notes, activity, ownership, and status.
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="https://digitalheroesco.com">Built for Digital Heroes Training Task</a>
+    </footer>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

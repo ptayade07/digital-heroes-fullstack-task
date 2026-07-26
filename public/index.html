@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeadDesk Capture</title>
+    <meta name="description" content="Public lead capture form for the LeadDesk qualification task.">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">LeadDesk</a>
+      <nav>
+        <a href="/app.html">Team app</a>
+      </nav>
+    </header>
+
+    <main class="capture-layout">
+      <section class="intro">
+        <p class="eyebrow">For growing agencies</p>
+        <h1>Capture every qualified lead before it gets buried.</h1>
+        <p>
+          LeadDesk gives small sales teams a clean intake path, clear ownership,
+          and a reliable activity trail from first contact to close.
+        </p>
+      </section>
+
+      <form id="lead-form" class="panel" aria-labelledby="form-title">
+        <h2 id="form-title">Request a consultation</h2>
+        <label>
+          Name
+          <input name="name" autocomplete="name" required>
+        </label>
+        <label>
+          Work email
+          <input name="email" type="email" autocomplete="email" required>
+        </label>
+        <label>
+          Company
+          <input name="company" autocomplete="organization" required>
+        </label>
+        <label>
+          What do you need help with?
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit">Submit lead</button>
+        <p id="capture-message" class="form-message" role="status"></p>
+      </form>
+    </main>
+
+    <footer>
+      <a href="https://digitalheroesco.com">Built for Digital Heroes Training Task</a>
+    </footer>
+
+    <script>
+      const form = document.querySelector("#lead-form");
+      const message = document.querySelector("#capture-message");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        message.textContent = "Submitting...";
+        const payload = Object.fromEntries(new FormData(form));
+        const response = await fetch("/api/public/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          message.textContent = result.error?.details?.join(", ") || result.error?.message || "Submission failed.";
+          return;
+        }
+        form.reset();
+        message.textContent = "Thanks. Your request has been added to the sales queue.";
+      });
+    </script>
+  </body>
+</html>
