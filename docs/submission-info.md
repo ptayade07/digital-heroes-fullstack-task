@@ -86,21 +86,4 @@ I used AI to accelerate scaffolding, test planning, and documentation structure.
 - Drive folder includes or links to the live app
 - Drive folder includes Task B document
 
-## Instagram Message Template
 
-```text
-Hi, here is my Full Stack Development qualification task submission:
-
-Google Drive folder:
-PASTE_GOOGLE_DRIVE_LINK_HERE
-
-GitHub repo:
-PASTE_GITHUB_REPO_LINK_HERE
-
-Live app:
-https://digital-heroes-fullstack-task-1gdv.onrender.com/
-
-Demo credentials:
-Admin - admin@example.com / admin123
-Member - member@example.com / member123
-```
