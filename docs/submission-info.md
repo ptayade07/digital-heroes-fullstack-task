@@ -5,6 +5,7 @@
 Role: Full Stack Development
 
 Name: Purva Pradeep Tayade
+purvatayade2603@gmail.com
 
 ## Live Links
 
